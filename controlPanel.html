@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./src/css/color-pickernano.min.css">
     <title>List overlay control panel</title>
 </head>
+
 <body>
     <div class="container">
         <header class="main-header">
@@ -23,6 +24,9 @@
                     </li>
                     <li id="show-options" class="menu-item menu-options">
                         <span class="btn btn-sm btn-secondary"><i class="fas fa-cog"></i></span>
+                    </li>
+                    <li id="show-automation" class="menu-item menu-automation">
+                        <span class="btn btn-sm btn-secondary"><i class="fas fa-robot"></i></span>
                     </li>
                 </ul>
             </nav>
@@ -40,7 +44,7 @@
                 </div>
                 <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" id="higlight-switch">
-                    <label class="form-check-label"  for="higlight-switch">Higlight</label>
+                    <label class="form-check-label" for="higlight-switch">Higlight</label>
                 </div>
                 <div class="add-item-subit-container">
                     <button type="submit" id="show-options-add-item" class="btn btn-sm btn-secondary">Add <i
@@ -49,7 +53,7 @@
             </form>
         </section>
         <section class="show-list hide">
-            <h1 id="list-title"></h1>
+            <h1 id="list-title">List</h1>
             <div class="table-responsive">
                 <table class="table table-striped table-secondary table-borderless">
                     <thead>
@@ -67,27 +71,30 @@
         </section>
         <section class="show-options hide">
             <!--h1>Options</h1-->
-            <form>                
+            <form>
                 <div class="change overlay-sizes">
-                    
+
                     <h1>Screen</h1>
                     <div class="input-group-sm mb-3">
                         <label for="options-change-screen-width" id="lb-change-overlay-width" class="form-label">
                             Screen width
                         </label>
-                        <input type="number" value="1920" class="check-change form-control input-group-sm" id="options-change-screen-width">
+                        <input type="number" value="1920" class="check-change form-control input-group-sm"
+                            id="options-change-screen-width">
                     </div>
                     <div class="mb-3 input-group-sm">
                         <label for="options-change-screen-height" id="lb-change-overlay-height" class="form-label">
                             Screen height
                         </label>
-                        <input type="number" value="1080" class="check-change form-control input-group-sm" id="options-change-screen-height">
+                        <input type="number" value="1080" class="check-change form-control input-group-sm"
+                            id="options-change-screen-height">
                     </div>
                     <div class="mb-3 input-group-sm">
                         <label for="options-change-screen-bg-color" id="lb-change-screen-bg-color" class="form-label">
                             Screen background color
                         </label>
-                        <input  class="check-change pickr form-control input-group-sm" id="options-change-screen-bg-color">
+                        <input class="check-change pickr form-control input-group-sm"
+                            id="options-change-screen-bg-color">
                     </div>
                     <hr>
                     <h1>List</h1>
@@ -95,59 +102,67 @@
                         <label for="options-change-list-width" id="lb-change-list-width" class="form-label">
                             List width
                         </label>
-                        <input type="number" value="1920" class=" check-change form-control input-group-sm" id="options-change-list-width">
+                        <input type="number" value="1920" class=" check-change form-control input-group-sm"
+                            id="options-change-list-width">
                     </div>
                     <div class="mb-3 input-group-sm">
                         <label for="options-change-list-height" id="lb-change-list-height" class="form-label">
                             List height
                         </label>
-                        <input type="number" value="1080" class=" check-change form-control input-group-sm" id="options-change-list-height">
+                        <input type="number" value="1080" class=" check-change form-control input-group-sm"
+                            id="options-change-list-height">
                     </div>
                     <div class="mb-3 input-group-sm">
                         <label for="options-change-list-bg-color" id="lb-change-list-bg-color" class="form-label">
                             List background color
                         </label>
-                        <input  class="check-change pickr form-control input-group-sm" id="options-change-list-bg-color">                        
+                        <input class="check-change pickr form-control input-group-sm" id="options-change-list-bg-color">
                         <hr>
                         <div class="input-group mb-3">
-                            <label class="input-group-text" for="options-list-vertical-position">List column position</label>
+                            <label class="input-group-text" for="options-list-vertical-position">List column
+                                position</label>
                             <select class="check-change form-select" id="options-list-vertical-position">
-                              <option value="center" selected>center</option>
-                              <option value="flex-start">Left</option>
-                              <option value="flex-end">Right</option>                              
+                                <option value="center" selected>center</option>
+                                <option value="flex-start">Left</option>
+                                <option value="flex-end">Right</option>
                             </select>
                         </div>
                         <div class="input-group mb-3">
-                            <label class="input-group-text" for="options-list-horizontal-position">List line position </label>
+                            <label class="input-group-text" for="options-list-horizontal-position">List line position
+                            </label>
                             <select class="check-change form-select" id="options-list-horizontal-position">
-                              <option value="flex-start" selected>Top</option>
-                              <option value="center">Center</option>
-                              <option value="flex-end">Bottom</option>                              
+                                <option value="flex-start" selected>Top</option>
+                                <option value="center">Center</option>
+                                <option value="flex-end">Bottom</option>
                             </select>
                         </div>
                         <div class="mb-3 input-group-sm">
-                            <label for="options-list-margin-top"  class="form-label">
+                            <label for="options-list-margin-top" class="form-label">
                                 List margin top
                             </label>
-                            <input type="number"  class="check-change form-control input-group-sm" id="options-list-margin-top">
+                            <input type="number" class="check-change form-control input-group-sm"
+                                id="options-list-margin-top">
                         </div>
                         <div class="mb-3 input-group-sm">
-                            <label for="options-list-margin-bottom"  class="form-label">
+                            <label for="options-list-margin-bottom" class="form-label">
                                 List margin bottom
                             </label>
-                            <input type="number"  class="check-change form-control input-group-sm" id="options-list-margin-bottom">
+                            <input type="number" class="check-change form-control input-group-sm"
+                                id="options-list-margin-bottom">
                         </div>
                         <div class="mb-3 input-group-sm">
-                            <label for="options-list-margin-right"  class="form-label">
+                            <label for="options-list-margin-right" class="form-label">
                                 List margin right
                             </label>
-                            <input type="number"  class="check-change form-control input-group-sm" id="options-list-margin-right">
+                            <input type="number" class="check-change form-control input-group-sm"
+                                id="options-list-margin-right">
                         </div>
                         <div class="mb-3 input-group-sm">
-                            <label for="options-list-margin-left"  class="form-label">
+                            <label for="options-list-margin-left" class="form-label">
                                 List margin left
                             </label>
-                            <input type="number"  class="check-change form-control input-group-sm" id="options-list-margin-left">
+                            <input type="number" class="check-change form-control input-group-sm"
+                                id="options-list-margin-left">
                         </div>
                         <hr>
                         <h1>List title</h1>
@@ -156,82 +171,99 @@
                             <label class="form-check-label" for="options-list-title-active">Show title</label>
                         </div>
                         <div class="mb-3 input-group-sm">
-                            <label for="options-change-list-title-text" id="lb-change-list-title-text" class="form-label">
+                            <label for="options-change-list-title-text" id="lb-change-list-title-text"
+                                class="form-label">
                                 Title text
                             </label>
-                            <input type="text" class="check-change form-control input-group-sm" id="options-change-list-title-text">
+                            <input type="text" class="check-change form-control input-group-sm"
+                                id="options-change-list-title-text">
                         </div>
                         <div class="mb-3 input-group-sm">
-                            <label for="options-change-list-title-font-size" id="lb-change-list-title-font-size" class="form-label">
+                            <label for="options-change-list-title-font-size" id="lb-change-list-title-font-size"
+                                class="form-label">
                                 Title Font size
                             </label>
-                            <input type="number" class="check-change form-control input-group-sm" id="options-change-list-title-font-size">
+                            <input type="number" class="check-change form-control input-group-sm"
+                                id="options-change-list-title-font-size">
                         </div>
                         <div class="mb-3 input-group-sm">
-                            <label for="options-change-list-title-font-color" id="lb-change-list-title-font-color" class="form-label">
+                            <label for="options-change-list-title-font-color" id="lb-change-list-title-font-color"
+                                class="form-label">
                                 Title font color
                             </label>
-                            <input  class="check-change pickr form-control input-group-sm" id="options-change-list-title-font-color">
+                            <input class="check-change pickr form-control input-group-sm"
+                                id="options-change-list-title-font-color">
                         </div>
                         <div class="mb-3 input-group-sm">
-                            <label for="options-change-list-title-bg-color" id="lb-change-list-title-bg-color" class="form-label">
+                            <label for="options-change-list-title-bg-color" id="lb-change-list-title-bg-color"
+                                class="form-label">
                                 Title background color
                             </label>
-                            <input  class="check-change pickr form-control input-group-sm" id="options-change-list-title-bg-color">
+                            <input class="check-change pickr form-control input-group-sm"
+                                id="options-change-list-title-bg-color">
                         </div>
                         <hr>
                         <h1>List header</h1>
                         <div class="form-check form-switch">
-                            <input class="check-change form-check-input" type="checkbox" id="options-list-header-active">
+                            <input class="check-change form-check-input" type="checkbox"
+                                id="options-list-header-active">
                             <label class="form-check-label" for="options-list-header-active">Show header</label>
                         </div>
                         <div class="mb-3 input-group-sm">
                             <label for="options-change-list-header-name1" class="form-label">
                                 First header name
                             </label>
-                            <input type="text" class="check-change form-control input-group-sm" id="options-change-list-header-name1">
+                            <input type="text" class="check-change form-control input-group-sm"
+                                id="options-change-list-header-name1">
                         </div>
                         <div class="mb-3 input-group-sm">
                             <label for="options-change-list-header-name2" class="form-label">
                                 Second header name
                             </label>
-                            <input type="text" class="check-change form-control input-group-sm" id="options-change-list-header-name2">
+                            <input type="text" class="check-change form-control input-group-sm"
+                                id="options-change-list-header-name2">
                         </div>
                         <div class="mb-3 input-group-sm">
                             <label for="options-change-list-header-font-size" class="form-label">
                                 Header font size
                             </label>
-                            <input type="number" class="check-change form-control input-group-sm" id="options-change-list-header-font-size">
+                            <input type="number" class="check-change form-control input-group-sm"
+                                id="options-change-list-header-font-size">
                         </div>
                         <div class="mb-3 input-group-sm">
                             <label for="options-list-header-font-color" class="form-label">
                                 List header font color
                             </label>
-                            <input  class="check-change pickr form-control input-group-sm" id="options-list-header-font-color">
+                            <input class="check-change pickr form-control input-group-sm"
+                                id="options-list-header-font-color">
                         </div>
                         <div class="mb-3 input-group-sm">
                             <label for="options-list-header-bg-color" class="form-label">
                                 List header background color
                             </label>
-                            <input  class="check-change pickr form-control input-group-sm" id="options-list-header-bg-color">
+                            <input class="check-change pickr form-control input-group-sm"
+                                id="options-list-header-bg-color">
                         </div>
                         <hr>
                         <h1>List Items</h1>
                         <div class="form-check form-switch">
-                            <input class="check-change form-check-input" type="checkbox" id="options-list-header-show-index">
+                            <input class="check-change form-check-input" type="checkbox"
+                                id="options-list-header-show-index">
                             <label class="form-check-label" for="options-list-header-show-index">Show index</label>
                         </div>
                         <div class="mb-3 input-group-sm">
-                            <label for="options-change-list-item-color"  class="form-label">
+                            <label for="options-change-list-item-color" class="form-label">
                                 Items default color
                             </label>
-                            <input class="check-change pickr form-control input-group-sm" id="options-change-list-item-color">
+                            <input class="check-change pickr form-control input-group-sm"
+                                id="options-change-list-item-color">
                         </div>
                         <div class="mb-3 input-group-sm">
-                            <label for="options-list-item-font-size"  class="form-label">
+                            <label for="options-list-item-font-size" class="form-label">
                                 Item font size
                             </label>
-                            <input type="number" value="18" class="check-change form-control input-group-sm" id="options-list-item-font-size">
+                            <input type="number" value="18" class="check-change form-control input-group-sm"
+                                id="options-list-item-font-size">
                         </div>
                         <hr>
                         <h1>Higlight</h1>
@@ -239,60 +271,95 @@
                             <label for="options-higlight-font-size" class="form-label">
                                 Higlight font size
                             </label>
-                            <input type="number" value="18" class="check-change form-control input-group-sm" id="options-higlight-font-size">
+                            <input type="number" value="18" class="check-change form-control input-group-sm"
+                                id="options-higlight-font-size">
                         </div>
                         <div class="mb-3 input-group-sm">
                             <label for="options-higlight-font-color" class="form-label">
                                 Higlight font color
                             </label>
-                            <input  class="check-change pickr form-control input-group-sm" id="options-higlight-font-color">
+                            <input class="check-change pickr form-control input-group-sm"
+                                id="options-higlight-font-color">
                         </div>
                         <div class="mb-3 input-group-sm">
                             <label for="options-higlight-bg-color" class="form-label">
                                 Higlight background color
                             </label>
-                            <input  class="check-change pickr form-control input-group-sm" id="options-higlight-bg-color">
+                            <input class="check-change pickr form-control input-group-sm"
+                                id="options-higlight-bg-color">
                         </div>
 
-                        <hr/>
+                        <hr />
 
                         <h1>Animations</h1>
                         <div class="form-check form-switch">
-                            <input class="check-change form-check-input" type="checkbox" id="options-animations-add-item">
+                            <input class="check-change form-check-input" type="checkbox"
+                                id="options-animations-add-item">
                             <label class="form-check-label" for="options-animations-add-item">Add item animation</label>
                         </div>
-                        <div class="input-group mb-3">
+                        <!--div class="input-group mb-3">
                             <label class="input-group-text" for="options-animations-add-item-type">Add item Animation Type</label>
                             <select class="check-change form-select" id="options-animations-add-item-type">
                               <option value="flipin" selected>Flip In</option>
                                                            
                             </select>
-                        </div>
+                        </div-->
 
                         <div class="form-check form-switch">
-                            <input class="check-change form-check-input" type="checkbox" id="options-animations-remove-item">
-                            <label class="form-check-label" for="options-animations-remove-item">Remove item animation</label>
+                            <input class="check-change form-check-input" type="checkbox"
+                                id="options-animations-remove-item">
+                            <label class="form-check-label" for="options-animations-remove-item">Remove item
+                                animation</label>
                         </div>
-                        <div class="input-group mb-3">
+                        <!--div class="input-group mb-3">
                             <label class="input-group-text" for="options-animations-remove-item-type">Remove item Animation Type</label>
                             <select class="check-change form-select" id="options-animations-remove-item-type">
                               <option value="slideright" selected>Slide Right</option>
                                                            
                             </select>
-                        </div>
+                        </div-->
                         <div class="form-check form-switch">
-                            <input class="check-change form-check-input" type="checkbox" id="options-animations-change-position">
-                            <label class="form-check-label" for="options-animations-change-position">Change position animation</label>
+                            <input class="check-change form-check-input" type="checkbox"
+                                id="options-animations-change-position">
+                            <label class="form-check-label" for="options-animations-change-position">Change position
+                                animation</label>
                         </div>
                     </div>
-                </div>              
+                </div>
             </form>
         </section>
+
+        <section class="show-automation hide">
+            <h1>Twitch Sync</h1>
+            <form>
+                <div class="input-group-sm mb-3">
+                    <label for="automation-twitch-channel" id="first-field-name" class="form-label">Twitch
+                        Channel</label>
+                    <input type="text" class="form-control input-group-sm" id="automation-twitch-channel" placeholder="Your Channel Name">
+                </div>
+                <div class="input-group-sm mb-3">
+                    <label for="automation-add-item-id" id="first-field-name" class="form-label">Add Item Reward ID</label>
+                    <input type="text" class="form-control input-group-sm" id="automation-add-item-id">
+                </div>
+                <div class="input-group-sm mb-3">
+                    <label for="automation-add-item-command" id="first-field-name" class="form-label">Add Item Command</label>
+                    <input type="text" class="form-control input-group-sm" id="automation-add-item-command" value="listadd">
+                    <small>Withoud "!"</small>
+                </div>
+                <div class="input-group-sm mb-3">
+                    <label for="automation-remove-item-command" id="first-field-name" class="form-label">Remove Item Command</label>
+                    <input type="text" class="form-control input-group-sm" id="automation-remove-item-command" value="listremove">
+                    <small>Withoud "!"</small>
+                </div>
+            </form>
+        </section>
+
     </div>
     <script src="https://cdn.jsdelivr.net/npm/comfy.js@1.1.6/dist/comfy.min.js"></script>
     <script src="./src/bootstrap/js/bootstrap.min.js"></script>
-    <script src="./src/fontawesome/js/fontawesome.all.min.js"></script>    
+    <script src="./src/fontawesome/js/fontawesome.all.min.js"></script>
     <script src="./src/js/color-pickr.min.js"></script>
     <script src="./src/js/controlPanel.js"></script>
 </body>
+
 </html>

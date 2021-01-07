@@ -1,5 +1,10 @@
 window.onload = () => {
+
     
+
+
+    
+
     const overlayOptions = {
         "screen": {
             "screenWidth": 1920,
@@ -42,12 +47,12 @@ window.onload = () => {
             "higlightFontColor": "rgba(255,23,229,1)",
             "higlightBgColor": "rgba(227,255,0,1)",
         },
-        "animations":{
+        "animations": {
             "addItemAnimation": true,
             "addItemAnimationType": "flipIn",
             "removeItemAnimation": true,
             "removeItemAnimationType": "slideRight",
-            "changePositionAnimation": true          
+            "changePositionAnimation": true
         }
     }
 
@@ -122,7 +127,7 @@ window.onload = () => {
     function updatePanelInterface() {
         let options = getDataFromStorage(`${storagePrefix}overlayOptions`)
 
-        console.log(options.animations)
+        console.log(options)
 
         // add item page
         addItemFieldName_1.textContent = options.listHeader.listHeaderName1
@@ -164,11 +169,11 @@ window.onload = () => {
         higlightBgColor().value = options.higlight.higlightBgColor
 
         animationAddItem().checked = options.animations.addItemAnimation
-        animationAddItemType().value = options.animations.addItemAnimationType
+        //animationAddItemType().value = options.animations.addItemAnimationType
         animationRemoveItem().checked = options.animations.removeItemAnimation
-        animationRemoveItemType().value = options.animations.removeItemAnimationType
-        animationChangePosition().checked = options.animations.changePositionAnimation       
-        
+        //animationRemoveItemType().value = options.animations.removeItemAnimationType
+        animationChangePosition().checked = options.animations.changePositionAnimation
+
 
         // list page
         listHeadFirstField.textContent = options.listHeader.listHeaderName1
@@ -216,12 +221,12 @@ window.onload = () => {
         options.higlight.higlightFontColor = higlightFontColor().value
         options.higlight.higlightBgColor = higlightBgColor().value
 
-        
-        options.animations.addItemAnimation = animationAddItem().checked 
-        options.animations.addItemAnimationType = animationAddItemType().value
-        options.animations.removeItemAnimation = animationRemoveItem().checked 
-        options.animations.removeItemAnimationType = animationRemoveItemType().value
-        options.animations.changePositionAnimation = animationChangePosition().checked 
+
+        options.animations.addItemAnimation = animationAddItem().checked
+        // options.animations.addItemAnimationType = animationAddItemType().value
+        options.animations.removeItemAnimation = animationRemoveItem().checked
+        //options.animations.removeItemAnimationType = animationRemoveItemType().value
+        options.animations.changePositionAnimation = animationChangePosition().checked
 
         saveInStorage(`${storagePrefix}overlayOptions`, options)
 

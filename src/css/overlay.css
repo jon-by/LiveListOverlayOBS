@@ -19,13 +19,13 @@
     font-weight: bolder;
 }
 
-.fist-item{    
+/*.fist-item{    
     animation-name: first-item;    
     animation-duration: 5s;    
     animation-fill-mode: both;
     animation-iteration-count:infinite;    
     transition: 1s;
-}
+}*/
 
 
 @keyframes first-item {
@@ -39,7 +39,7 @@
 .higlight{
     z-index: 100 !important;
 }
-.higlight::after{
+/* .higlight::after{
     content: 'SUB';
     color: black;
     position: absolute;
@@ -47,12 +47,12 @@
     transform: rotate(-20deg);
     margin-left: -35px;
     /* margin-top: 0px; */
-    /* background-color: #0cd309c9; */
+    /* background-color: #0cd309c9; *//*
     border-radius: 50%;
     padding: 5px;
     /* box-shadow: 3px 3px 7px rgba(0, 0, 0, .5); */
     
-}
+/*} */
   
 
 .just-added {    
