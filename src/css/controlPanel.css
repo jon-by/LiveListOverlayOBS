@@ -128,3 +128,10 @@ span.alert{
     text-align: center;    
     display: block;
 }
+
+.last-reard-id-from-chat{
+    margin: 50px auto;
+    padding: 5px;
+    background-color: #463c5e;
+    border-radius: 5px;
+}

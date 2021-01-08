@@ -133,6 +133,7 @@ window.onload = () => {
     var rewardId3 = () => document.querySelector('#automation-add-item-id-3')
     var addItemCommand = () => document.querySelector('#automation-add-item-command')
     var removeItemCommand = () => document.querySelector('#automation-remove-item-command')
+    var lastRewardId = () => document.querySelector("#last-reward-id")
 
     function updatePanelInterface() {
         let options = getDataFromStorage(`${storagePrefix}overlayOptions`)
@@ -461,15 +462,14 @@ window.onload = () => {
 
         if (options.automation.twitchName && options.automation.twitchName != '') {
             ComfyJS.Init(options.automation.twitchName);
-
             ComfyJS.onChat = (user, message, flags, self, extra) => {
+                lastRewardId().value = extra.customRewardId 
                 if (extra.customRewardId === options.automation.rewardId1 ||
                     extra.customRewardId === options.automation.rewardId2 ||
                     extra.customRewardId === options.automation.rewardId3) {
                     addItemToList(user, message, flags.subscriber)
                 }
             }
-
             ComfyJS.onCommand = (user, command, message, flags, extra) => {
                 if (command === options.automation.addItemCommand && (flags.broadcaster || flags.mod)) {
                     let toAdd = message.trim().split(' ')
