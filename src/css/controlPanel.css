@@ -115,3 +115,16 @@ input.pickr {
     width: 100px;
     padding: 15px !important;
 }
+
+.separation{
+    background-color: #595959f5;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+span.alert{
+    font-size: 16px;
+    color: #c65757;
+    text-align: center;    
+    display: block;
+}

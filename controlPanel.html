@@ -333,22 +333,45 @@
             <h1>Twitch Sync</h1>
             <form>
                 <div class="input-group-sm mb-3">
-                    <label for="automation-twitch-channel" id="first-field-name" class="form-label">Twitch
+                    <label for="automation-twitch-channel"  class="form-label">Twitch
                         Channel</label>
-                    <input type="text" class="form-control input-group-sm" id="automation-twitch-channel" placeholder="Your Channel Name">
+                    <input type="text" class="check-change form-control input-group-sm" id="automation-twitch-channel"
+                        placeholder="Your Channel Name">
+                </div>
+
+                <div class="separation">
+                    <span class="alert">You can setup up to three id's to add items to the list</span>
+                    <div class="input-group-sm mb-3">
+                        <label for="automation-add-item-id-1"  class="form-label">Add Item Reward
+                            ID 1</label>
+                        <input type="text" class="check-change form-control input-group-sm" id="automation-add-item-id-1" placeholder="eg: m5378l15-a6ef-4f4c-9b23-ac9d3447700c">
+                    </div>
+                    <div class="input-group-sm mb-3">
+                        <label for="automation-add-item-id-2"  class="form-label">Add Item Reward
+                            ID 2</label>
+                        <input type="text" class="check-change form-control input-group-sm" id="automation-add-item-id-2" placeholder="eg: m5378l15-a6ef-4f4c-9b23-ac9d3447700c">
+                    </div>
+                    <div class="input-group-sm mb-3">
+                        <label for="automation-add-item-id-3"  class="form-label">Add Item Reward
+                            ID 3</label>
+                        <input type="text" class="check-change form-control input-group-sm" id="automation-add-item-id-3" placeholder="eg: m5378l15-a6ef-4f4c-9b23-ac9d3447700c">
+                    </div>
+                    <span>Check <a href="https://github.com/jon-by/LiveListOverlayOBS"> github</a> to see how to get your reward id</span>
+                </div>
+                <br/>
+
+                <div class="input-group-sm mb-3">
+                    <label for="automation-add-item-command"  class="form-label">Add Item
+                        Command</label>
+                    <input type="text" class="check-change form-control input-group-sm" id="automation-add-item-command"
+                        value="listadd">
+                    <small>Eg: !listadd @follower play my song</small>
                 </div>
                 <div class="input-group-sm mb-3">
-                    <label for="automation-add-item-id" id="first-field-name" class="form-label">Add Item Reward ID</label>
-                    <input type="text" class="form-control input-group-sm" id="automation-add-item-id">
-                </div>
-                <div class="input-group-sm mb-3">
-                    <label for="automation-add-item-command" id="first-field-name" class="form-label">Add Item Command</label>
-                    <input type="text" class="form-control input-group-sm" id="automation-add-item-command" value="listadd">
-                    <small>Withoud "!"</small>
-                </div>
-                <div class="input-group-sm mb-3">
-                    <label for="automation-remove-item-command" id="first-field-name" class="form-label">Remove Item Command</label>
-                    <input type="text" class="form-control input-group-sm" id="automation-remove-item-command" value="listremove">
+                    <label for="automation-remove-item-command"  class="form-label">Remove Item
+                        Command</label>
+                    <input type="text" class="check-change form-control input-group-sm" id="automation-remove-item-command"
+                        value="listremove">
                     <small>Withoud "!"</small>
                 </div>
             </form>

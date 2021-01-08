@@ -1,10 +1,4 @@
 window.onload = () => {
-
-    
-
-
-    
-
     const overlayOptions = {
         "screen": {
             "screenWidth": 1920,
@@ -53,6 +47,14 @@ window.onload = () => {
             "removeItemAnimation": true,
             "removeItemAnimationType": "slideRight",
             "changePositionAnimation": true
+        },
+        "automation": {
+            "twitchName": '',
+            "rewardId1": '',
+            "rewardId2": '',
+            "rewardId3": '',
+            "addItemCommand": 'listadd',
+            "removeItemCommand": 'listremove'
         }
     }
 
@@ -124,11 +126,17 @@ window.onload = () => {
     var animationRemoveItemType = () => document.querySelector('#options-animations-remove-item-type')
     var animationChangePosition = () => document.querySelector('#options-animations-change-position')
 
+    //automation
+    var twitchChannel = () => document.querySelector('#automation-twitch-channel')
+    var rewardId1 = () => document.querySelector('#automation-add-item-id-1')
+    var rewardId2 = () => document.querySelector('#automation-add-item-id-2')
+    var rewardId3 = () => document.querySelector('#automation-add-item-id-3')
+    var addItemCommand = () => document.querySelector('#automation-add-item-command')
+    var removeItemCommand = () => document.querySelector('#automation-remove-item-command')
+
     function updatePanelInterface() {
         let options = getDataFromStorage(`${storagePrefix}overlayOptions`)
-
-        console.log(options)
-
+        //console.log(options)
         // add item page
         addItemFieldName_1.textContent = options.listHeader.listHeaderName1
         addItemFieldName_2.textContent = options.listHeader.listHeaderName2
@@ -174,15 +182,21 @@ window.onload = () => {
         //animationRemoveItemType().value = options.animations.removeItemAnimationType
         animationChangePosition().checked = options.animations.changePositionAnimation
 
+        twitchChannel().value = options.automation.twitchName
+        rewardId1().value = options.automation.rewardId1
+        rewardId2().value = options.automation.rewardId2
+        rewardId3().value = options.automation.rewardId3
+        addItemCommand().value = options.automation.addItemCommand
+        removeItemCommand().value = options.automation.removeItemCommand
 
         // list page
         listHeadFirstField.textContent = options.listHeader.listHeaderName1
         listHeadSecondField.textContent = options.listHeader.listHeaderName2
 
         showListItems()
+        setupAutomation()
 
     }
-
     function saveChangedOptions() {
         let options = overlayOptions
 
@@ -221,23 +235,26 @@ window.onload = () => {
         options.higlight.higlightFontColor = higlightFontColor().value
         options.higlight.higlightBgColor = higlightBgColor().value
 
-
         options.animations.addItemAnimation = animationAddItem().checked
         // options.animations.addItemAnimationType = animationAddItemType().value
         options.animations.removeItemAnimation = animationRemoveItem().checked
         //options.animations.removeItemAnimationType = animationRemoveItemType().value
         options.animations.changePositionAnimation = animationChangePosition().checked
 
+        options.automation.twitchName = twitchChannel().value
+        options.automation.rewardId1 = rewardId1().value
+        options.automation.rewardId2 = rewardId2().value
+        options.automation.rewardId3 = rewardId3().value
+        options.automation.addItemCommand = addItemCommand().value
+        options.automation.removeItemCommand = removeItemCommand().value
+
         saveInStorage(`${storagePrefix}overlayOptions`, options)
-
         updatePanelInterface()
-
         tabComunication.postMessage({
             "type": "updateoverlay"
         })
 
     }
-
     function deleteControl() {
         let ItemDeleteControl = document.querySelectorAll('.control-delete')
         ItemDeleteControl.forEach(item => {
@@ -247,7 +264,6 @@ window.onload = () => {
             }
         })
     }
-
     function changeItem() {
         let controls = document.querySelectorAll('.list-controls .control')
         controls.forEach(item => {
@@ -258,9 +274,7 @@ window.onload = () => {
                 changeItemPosition(index, action)
             }
         })
-
     }
-
     btn_addListItem.onclick = event => {
         event.preventDefault()
         let higlightSwitch = () => document.querySelector('#higlight-switch')
@@ -274,7 +288,6 @@ window.onload = () => {
 
         higlightSwitch().checked = false
     }
-
     function showListItems() {
         let list = getDataFromStorage(`${storagePrefix}list`)
         let listBody = document.querySelector('#list-body')
@@ -298,7 +311,6 @@ window.onload = () => {
         deleteControl()
         changeItem()
     }
-
     function changeItemPosition(index, action) {
         index = parseInt(index)
         let list = getDataFromStorage(`${storagePrefix}list`)
@@ -309,14 +321,12 @@ window.onload = () => {
                 list[index - 1] = original
             }
         }
-
         if (action == 'down') {
             if (typeof (list[index + 1]) !== 'undefined') {
                 list[index] = list[index + 1]
                 list[index + 1] = original
             }
         }
-
         saveInStorage(`${storagePrefix}list`, list)
         updatePanelInterface()
         tabComunication.postMessage({
@@ -325,7 +335,6 @@ window.onload = () => {
             "index": index
         })
     }
-
     function addItemToList(firstField, secondField, higlight) {
         let item = { firstField, secondField, higlight }
         let list = getDataFromStorage(`${storagePrefix}list`)
@@ -337,7 +346,6 @@ window.onload = () => {
             "index": added
         })
     }
-
     function removeItemFromList(index) {
         let list = getDataFromStorage("LO_list")
         list.splice(index, 1)
@@ -348,7 +356,6 @@ window.onload = () => {
             "index": index
         })
     }
-
     //menu 
     menuItems.forEach(item => {
         item.addEventListener('click', event => {
@@ -362,7 +369,6 @@ window.onload = () => {
         })
         item.currentTarget.classList.add("btn-active")
     }
-
     function showSelectedMenu(menu) {
         bodySections.forEach(element => {
             element.classList.add("hide")
@@ -371,13 +377,11 @@ window.onload = () => {
             }
         })
     }
-
     allInputs.forEach(element => {
         element.onchange = () => {
             saveChangedOptions()
         }
     })
-
     // color picker
     function loadColorPicker() {
         elementColorPicker.forEach(element => {
@@ -408,19 +412,14 @@ window.onload = () => {
                 element.value = pickedColor
                 element.style.backgroundColor = pickedColor
                 pickr.hide();
-
-
             }).on('hide', color => {
                 let pickedColor = pickr.getColor().toRGBA().toString(0)
                 element.value = pickedColor
                 element.style.backgroundColor = pickedColor
                 saveChangedOptions()
             })
-
         })
     }
-
-
     // localstorage check
     if (!getDataFromStorage(`${storagePrefix}list`)) {
         let list = [{ "firstField": "Jon Doe", "secondField": "Have a nice day", "higlight": false }]
@@ -430,7 +429,6 @@ window.onload = () => {
     if (!getDataFromStorage(`${storagePrefix}overlayOptions`)) {
         saveInStorage(`${storagePrefix}overlayOptions`, overlayOptions)
     }
-
     //Storage
     function saveInStorage(name, data) {
         try {
@@ -445,7 +443,6 @@ window.onload = () => {
             console.log(error)
         }
     }
-
     function getDataFromStorage(name) {
         try {
             if (localStorage.getItem(name)) {
@@ -458,6 +455,44 @@ window.onload = () => {
             console.log(error)
         }
     }
+    //automation
+    function setupAutomation() {
+        let options = getDataFromStorage(`${storagePrefix}overlayOptions`)
+
+        if (options.automation.twitchName && options.automation.twitchName != '') {
+            ComfyJS.Init(options.automation.twitchName);
+
+            ComfyJS.onChat = (user, message, flags, self, extra) => {
+                if (extra.customRewardId === options.automation.rewardId1 ||
+                    extra.customRewardId === options.automation.rewardId2 ||
+                    extra.customRewardId === options.automation.rewardId3) {
+                    addItemToList(user, message, flags.subscriber)
+                }
+            }
+
+            ComfyJS.onCommand = (user, command, message, flags, extra) => {
+                if (command === options.automation.addItemCommand && (flags.broadcaster || flags.mod)) {
+                    let toAdd = message.trim().split(' ')
+                    let secondParam = ''
+
+                    toAdd.forEach((item, index) => {
+                        if (index > 0) {
+                            secondParam += `${item} `
+                        }
+                    })
+
+                    addItemToList(toAdd[0], secondParam.trim(), flags.broadcaster)
+                }
+
+                if (command === options.automation.removeItemCommand && (flags.broadcaster || flags.mod)) {
+                    toRemove = message.trim().replace(/[^\d]+/g, '')
+                    removeItemFromList(toRemove - 1)
+                }
+            }
+        }
+    }
+
+
 
     //localStorage.clear()
     updatePanelInterface()
