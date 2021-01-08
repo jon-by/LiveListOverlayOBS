@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+#main-container{
+    display: flex;    
+}
+#main-container div.table-responsive{ 
+    overflow: initial !important;
+}
+#table-container table{
+    max-width: 100%;
+    text-align: center;
+    overflow: hidden; 
+}
+#list-title{
+    text-align: center;    
+    font-family: 'Poppins', sans-serif;    
+    padding: 10px;    
+}
+.list-item{
+    font-weight: bolder;
+}
+
+/*.fist-item{    
+    animation-name: first-item;    
+    animation-duration: 5s;    
+    animation-fill-mode: both;
+    animation-iteration-count:infinite;    
+    transition: 1s;
+}*/
+
+
+@keyframes first-item {
+   0%{transform: scale3d(1,1, 1) rotate3d(0, 0, 1, -1deg);}  
+   50%{transform: scale3d(.95,.95, .95) rotate3d(0, 0, 1, 1deg);}  
+    
+   
+   100%{transform: scale3d(1,1,1) rotate3d(0, 0, 1, -1deg);}
+} 
+
+.higlight{
+    z-index: 100 !important;
+}
+/* .higlight::after{
+    content: 'SUB';
+    color: black;
+    position: absolute;
+    font-size: 11pt;
+    transform: rotate(-20deg);
+    margin-left: -35px;
+    /* margin-top: 0px; */
+    /* background-color: #0cd309c9; *//*
+    border-radius: 50%;
+    padding: 5px;
+    /* box-shadow: 3px 3px 7px rgba(0, 0, 0, .5); */
+    
+/*} */
+  
+
+.just-added {    
+  backface-visibility: visible;  
+  animation-name: flip;  
+  animation-duration: 2s;  
+  animation-fill-mode: both;
+}
+
+
+@keyframes flip {
+    0% {
+    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -360deg);
+    transform: perspective(400px) rotate3d(0, 1, 0, -360deg);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+    }
+    40% {
+    -webkit-transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
+    transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -190deg);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+    }
+    50% {
+    -webkit-transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
+    transform: perspective(400px) translate3d(0, 0, 150px) rotate3d(0, 1, 0, -170deg);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    }
+    80% {
+    -webkit-transform: perspective(400px) scale3d(.95, .95, .95);
+    transform: perspective(400px) scale3d(.95, .95, .95);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    }
+    100% {
+    -webkit-transform: perspective(400px);
+    transform: perspective(400px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    }
+    } 
+    
+
+
+.to-remove{
+    background-color: rgb(197, 60, 60) !important; 
+    transition: .3s;  
+    animation-name: removeitem;
+    animation-duration: 3s;   
+    animation-timing-function: cubic-bezier(.22,-0.61,.11,1.31);
+
+
+}
+
+.go-down{
+    transition: .3s;  
+    animation-name: go-down;
+    animation-duration: 1s;   
+    animation-timing-function: cubic-bezier(.22,-0.61,.11,1.31);
+}
+
+.go-up{     
+    transition: .3s;  
+    animation-name: go-up;
+    animation-duration: 1s;   
+    animation-timing-function: cubic-bezier(.22,-0.61,.11,1.31);
+}
+@keyframes removeitem {
+    0% {
+     transform: translateX(0); 
+             
+    }  
+    100% {
+    transform: translateX(1000px);
+    
+     
+    }
+  }
+
+
+  @keyframes go-up{
+      0%{
+        transform: translateY(0);
+        
+      }
+      100% {
+        transform: translateY(-40px);
+        
+        }
+  }
+
+  @keyframes go-down{
+    0%{
+      transform: translateY(0);
+       
+    }
+    100% {
+      transform: translateY(40px);
+       
+       
+      }
+}
