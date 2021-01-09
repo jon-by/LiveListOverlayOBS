@@ -21,7 +21,7 @@ Criamos o LiveListOverlayOBS com o objetivo de exibir em live a fila de pedidos 
 
 
 
-####Instalação
+#### Instalação
 
 
 >A instalação da lista é muito fácil e rápida, você pode fazer o download dos arquivos encontrados nesse repositório ou usar os links que vou fornecer aqui, o resultado será o mesmo, mas por ser mais pratico, vamos usar os links do repositório.
@@ -43,7 +43,7 @@ Em nome da aba, coloque o nome que você quer dar a sua lista, em URL, coloque a
 
 A instalação do overlay é feita como qualquer outra browser source.
 
-Copie a seguinte URL:
+Copie a seguinte URL:git add
 ``` 
 https://jon-by.github.io/LiveListOverlayOBS
 ```
