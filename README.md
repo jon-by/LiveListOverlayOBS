@@ -88,7 +88,7 @@ exemplo: !listadd beatrizxavierjd soy yo
 
 >O listremove recebe como parâmetro o ID a ser excluído.  O ID é a posição que o item se encontra na lista, o primeiro item tem o ID "1" o segundo tem o ID "2" e assim vai... :clown_face:
 
-Você tembém tem a opção de exibir o **Nº** no overlay, deixando mais fácil o processo de encontrar o ID a ser exluído. 
+Você também tem a opção de exibir o **Nº** no overlay, deixando mais fácil o processo de encontrar o ID a ser exluído. 
 
 > ##### Apenas o broadcaster e mods podem adicionar e remover itens à lista
  
