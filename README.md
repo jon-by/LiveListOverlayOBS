@@ -43,7 +43,7 @@ Em nome da aba, coloque o nome que você quer dar a sua lista, em URL, coloque a
 
 A instalação do overlay é feita como qualquer outra browser source.
 
-Copie a seguinte URL:git add
+Copie a seguinte URL:
 ``` 
 https://jon-by.github.io/LiveListOverlayOBS
 ```
