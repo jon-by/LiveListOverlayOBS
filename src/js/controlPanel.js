@@ -461,13 +461,16 @@ window.onload = () => {
     }
     //automation
     function setupAutomation(channel) {
-        let options = getDataFromStorage(`${storagePrefix}overlayOptions`)
-        console.log(options.automation.twitchName)
+        
+       // console.log(options.automation.twitchName)
 
 
         ComfyJS.Init(channel);
 
         ComfyJS.onChat = (user, message, flags, self, extra) => {
+            
+            let options = getDataFromStorage(`${storagePrefix}overlayOptions`)
+
             lastRewardId().value = extra.customRewardId
             if (extra.customRewardId === options.automation.rewardId1 ||
                 extra.customRewardId === options.automation.rewardId2 ||
@@ -476,6 +479,8 @@ window.onload = () => {
             }
         }
         ComfyJS.onCommand = (user, command, message, flags, extra) => {
+
+            let options = getDataFromStorage(`${storagePrefix}overlayOptions`)
             if (command === options.automation.addItemCommand && (flags.broadcaster || flags.mod)) {
                 let toAdd = message.trim().split(' ')
                 let secondParam = ''
