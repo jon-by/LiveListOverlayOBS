@@ -136,6 +136,8 @@ window.onload = () => {
     var lastRewardId = () => document.querySelector("#last-reward-id")
     var btnSync = document.querySelector('#twitch-channel-connect')
 
+    var restoreBtn = document.querySelector('#restore-btn')
+
     function updatePanelInterface() {
         let options = getDataFromStorage(`${storagePrefix}overlayOptions`)
         //console.log(options)
@@ -527,6 +529,14 @@ window.onload = () => {
         }
     }
 
+    restoreBtn.addEventListener('click', event => {
+        event.preventDefault()
+        localStorage.clear()
+        updatePanelInterface()
+        tabComunication.postMessage({
+            "type": "updateoverlay"
+        })
+    })
     
     //localStorage.clear()
     checkChannelName()
