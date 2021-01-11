@@ -48,6 +48,14 @@ window.onload = () => {
             "removeItemAnimation": true,
             "removeItemAnimationType": "slideRight",
             "changePositionAnimation": true
+        },
+        "automation": {
+            "twitchName": '',
+            "rewardId1": '',
+            "rewardId2": '',
+            "rewardId3": '',
+            "addItemCommand": 'listadd',
+            "removeItemCommand": 'listremove'
         }
     }
     const storagePrefix = 'LO_'

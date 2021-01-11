@@ -134,6 +134,7 @@ window.onload = () => {
     var addItemCommand = () => document.querySelector('#automation-add-item-command')
     var removeItemCommand = () => document.querySelector('#automation-remove-item-command')
     var lastRewardId = () => document.querySelector("#last-reward-id")
+    var btnSync = document.querySelector('#twitch-channel-connect')
 
     function updatePanelInterface() {
         let options = getDataFromStorage(`${storagePrefix}overlayOptions`)
@@ -195,7 +196,7 @@ window.onload = () => {
         listHeadSecondField.textContent = options.listHeader.listHeaderName2
 
         showListItems()
-        setupAutomation()
+
 
     }
     function saveChangedOptions() {
@@ -457,44 +458,78 @@ window.onload = () => {
         }
     }
     //automation
-    function setupAutomation() {
+    function setupAutomation(channel) {
         let options = getDataFromStorage(`${storagePrefix}overlayOptions`)
+        console.log(options.automation.twitchName)
 
-        if (options.automation.twitchName && options.automation.twitchName != '') {
-            ComfyJS.Init(options.automation.twitchName);
-            ComfyJS.onChat = (user, message, flags, self, extra) => {
-                lastRewardId().value = extra.customRewardId 
-                if (extra.customRewardId === options.automation.rewardId1 ||
-                    extra.customRewardId === options.automation.rewardId2 ||
-                    extra.customRewardId === options.automation.rewardId3) {
-                    addItemToList(user, message, flags.subscriber)
-                }
-            }
-            ComfyJS.onCommand = (user, command, message, flags, extra) => {
-                if (command === options.automation.addItemCommand && (flags.broadcaster || flags.mod)) {
-                    let toAdd = message.trim().split(' ')
-                    let secondParam = ''
 
-                    toAdd.forEach((item, index) => {
-                        if (index > 0) {
-                            secondParam += `${item} `
-                        }
-                    })
+        ComfyJS.Init(channel);
 
-                    addItemToList(toAdd[0], secondParam.trim(), flags.broadcaster)
-                }
-
-                if (command === options.automation.removeItemCommand && (flags.broadcaster || flags.mod)) {
-                    toRemove = message.trim().replace(/[^\d]+/g, '')
-                    removeItemFromList(toRemove - 1)
-                }
+        ComfyJS.onChat = (user, message, flags, self, extra) => {
+            lastRewardId().value = extra.customRewardId
+            if (extra.customRewardId === options.automation.rewardId1 ||
+                extra.customRewardId === options.automation.rewardId2 ||
+                extra.customRewardId === options.automation.rewardId3) {
+                addItemToList(user, message, flags.subscriber)
             }
         }
+        ComfyJS.onCommand = (user, command, message, flags, extra) => {
+            if (command === options.automation.addItemCommand && (flags.broadcaster || flags.mod)) {
+                let toAdd = message.trim().split(' ')
+                let secondParam = ''
+
+                toAdd.forEach((item, index) => {
+                    if (index > 0) {
+                        secondParam += `${item} `
+                    }
+                })
+
+                addItemToList(toAdd[0], secondParam.trim(), flags.broadcaster)
+            }
+
+            if (command === options.automation.removeItemCommand && (flags.broadcaster || flags.mod)) {
+                toRemove = message.trim().replace(/[^\d]+/g, '')
+                removeItemFromList(toRemove - 1)
+            }
+        }
+
     }
 
 
+    btnSync.addEventListener('click', (e) => {
+        e.preventDefault()
+        saveAndSync(twitchChannel().value)
+    })
 
+    function saveAndSync(channelName) {
+        fetch(`https://decapi.me/twitch/id/${channelName}`, {
+
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                saveChangedOptions()
+                btnSync.innerText = 'Connected'
+                btnSync.classList.remove('btn-danger')
+                btnSync.classList.add('btn-success')
+                setupAutomation(twitchChannel().value)
+            })
+            .catch(err => {
+                btnSync.innerText = 'Connect'
+                btnSync.classList.add('btn-danger')
+            })
+    }
+
+
+    function checkChannelName(){
+        if( getDataFromStorage(`${storagePrefix}overlayOptions`).automation.twitchName != '' ){
+            saveAndSync(getDataFromStorage(`${storagePrefix}overlayOptions`).automation.twitchName)
+        }
+    }
+
+    
     //localStorage.clear()
+    checkChannelName()
     updatePanelInterface()
     loadColorPicker()
 }
