@@ -69,21 +69,35 @@ window.onload = () => {
     var tableContainer = document.querySelector('#table-container')
     var tableHeader = document.querySelector('thead')
     var listIndex = () => document.querySelectorAll('.list-header-index')
-    var higlights = () => document.querySelectorAll('.higlight')
-    var listItens = () => document.querySelectorAll('.list-item')
+    var highlights = () => document.querySelectorAll('.higlight')
+    var listItems = () => document.querySelectorAll('.list-item')
 
     function drawOverlayList() {
+
+
         let options = getDataFromStorage(`${storagePrefix}overlayOptions`)
         let list = getDataFromStorage(`${storagePrefix}list`)
         let tableBodyHTML = ``
-
+        console.log(list)
         listTitle.textContent = options.listTitle.titleText
         listFirstField.textContent = options.listHeader.listHeaderName1
         listSecondField.textContent = options.listHeader.listHeaderName2
 
         list.forEach((listItem, index) => {
+            console.log(listItem.higlightSubs)
+            let subBitVip = ''
+            if (listItem.higlightSubs) {
+                subBitVip = 'sub'
+            } else if (listItem.higlightBits) {
+                subBitVip = 'bits'
+            } else if (listItem.higlightVips) {
+                subBitVip = 'vip'
+            }
+
+            console.log(subBitVip)
+
             tableBodyHTML += `
-                <tr class="list-item ${listItem.higlight ? 'higlight' : ''}${index == 0 ? ' fist-item' : ''}">
+                <tr class="list-item${index === 0 ? ' fist-item ' : ''} ${subBitVip != '' ? subBitVip + ' higlight' : ''} ">
                     <th class="list-header-index" scope="row">${parseInt(index) + 1}</th>                     
                     <td>${listItem.firstField}</td>
                     <td>${listItem.secondField}</td>                    
@@ -94,6 +108,7 @@ window.onload = () => {
         tableBody.innerHTML = tableBodyHTML
 
         applyStyle()
+
     }
 
     function applyStyle() {
@@ -118,7 +133,7 @@ window.onload = () => {
         mainContainer.style.justifyContent = options.list.listColumnPosition
         mainContainer.style.alignItems = options.list.listLinePosition
 
-        listItens().forEach(element => {
+        listItems().forEach(element => {
             element.style.color = options.listItems.itemsDefaultColor
         })
 
@@ -128,7 +143,7 @@ window.onload = () => {
 
         tableBody.style.fontSize = `${options.listItems.itemsFontSize}pt`
 
-        higlights().forEach(element => {
+        highlights().forEach(element => {
             element.style.fontSize = `${options.higlight.higlightFontSize}pt`
             element.style.color = options.higlight.higlightFontColor
             element.style.backgroundColor = options.higlight.higlightBgColor
@@ -192,41 +207,50 @@ window.onload = () => {
 
             if (options.animations.removeItemAnimation) {
                 let index = e.data.index
-                listItens()[index].classList.add('to-remove')
+                listItems()[index].classList.add('to-remove')
                 setTimeout(() => drawOverlayList(), 1000)
             } else {
-                drawOverlayList()
+                setTimeout(() => drawOverlayList(), 300)
             }
 
         }
 
         if (type == 'changePosition') {
-            if(options.animations.changePositionAnimation){
+            if (options.animations.changePositionAnimation) {
                 animateChangePosition(e.data)
-            }else{
-                drawOverlayList()
+            } else {
+                setTimeout(() => drawOverlayList(), 300)
             }
 
 
-            
+
         }
         if (type == 'addedItem') {
-            drawOverlayList()
+            setTimeout(() => {
 
-            if (options.animations.addItemAnimation) {
-                let index = parseInt(e.data.index) - 1
-                let itens = listItens()
+                drawOverlayList()
 
-                itens[index].classList.add('just-added')
+                let list = getDataFromStorage(`${storagePrefix}list`)
 
-                setTimeout(() => {
-                    itens[index].classList.remove('just-added')
-                }, 3000);
-            }
+                console.log(list)
+
+                let index = e.data.index
+                if (options.animations.addItemAnimation) {
+
+                    let items = listItems()
+
+                    items[index].classList.add('just-added')
+
+                    setTimeout(() => {
+                        items[index].classList.remove('just-added')
+                    }, 3000);
+                }
+            }, 200)
+
         }
 
         if (type == 'updateoverlay') {
-            drawOverlayList()
+            setTimeout(() => drawOverlayList(), 300)
         }
 
     }

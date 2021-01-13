@@ -81,11 +81,18 @@ section.show-list table {
     margin: 0 auto;
 }
 
+
 .add-item-subit-container,
 .options-change-fields-container {
     width: 50%;
     margin: 0 auto;
     margin-top: 20px;
+}
+
+.flags-control{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
 .form-check.form-switch {
