@@ -518,18 +518,28 @@ window.onload = () => {
 
     }
 
-    function handleTwitchCommand(user, command, message, flags, extra) {
+    function handleTwitchCommand(user, command, message, flags, extra) {        
         let options = getDataFromStorage(`${storagePrefix}overlayOptions`)
+        
         if (command === options.automation.addItemCommand && (flags.broadcaster || flags.mod)) {
-            let toAdd = message.trim().split(' ')
+            let msg = message.trim().split(' ')
             let secondParam = ''
 
-            toAdd.forEach((item, index) => {
+            msg.forEach((item, index) => {
                 if (index > 0) {
                     secondParam += `${item} `
                 }
             })
-            addItemToList(toAdd[0], secondParam.trim(), flags.broadcaster)
+
+            let toAdd = {
+                "firstField": user,
+                "secondField": secondParam.trim(),
+                "higlightSubs": false,
+                "higlightVips": false,
+                "higlightBits": false
+            }
+
+            addItemToList( toAdd )
         }
 
         if (command === options.automation.removeItemCommand && (flags.broadcaster || flags.mod)) {

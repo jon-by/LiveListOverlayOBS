@@ -199,9 +199,7 @@ window.onload = () => {
 
     tabComunication.onmessage = function (e) {
         let options = getDataFromStorage(`${storagePrefix}overlayOptions`)
-
         let type = e.data.type
-
 
         if (type == 'deleteItem') {
 
@@ -212,7 +210,6 @@ window.onload = () => {
             } else {
                 setTimeout(() => drawOverlayList(), 300)
             }
-
         }
 
         if (type == 'changePosition') {
@@ -221,9 +218,6 @@ window.onload = () => {
             } else {
                 setTimeout(() => drawOverlayList(), 300)
             }
-
-
-
         }
         if (type == 'addedItem') {
             setTimeout(() => {
