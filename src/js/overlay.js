@@ -84,7 +84,7 @@ window.onload = () => {
         listSecondField.textContent = options.listHeader.listHeaderName2
 
         list.forEach((listItem, index) => {
-            console.log(listItem.higlightSubs)
+           // console.log(listItem.higlightSubs)
             let subBitVip = ''
             if (listItem.higlightSubs) {
                 subBitVip = 'sub'
@@ -94,7 +94,7 @@ window.onload = () => {
                 subBitVip = 'vip'
             }
 
-            console.log(subBitVip)
+            //console.log(subBitVip)
 
             tableBodyHTML += `
                 <tr class="list-item${index === 0 ? ' fist-item ' : ''} ${subBitVip != '' ? subBitVip + ' higlight' : ''} ">
@@ -226,7 +226,7 @@ window.onload = () => {
 
                 let list = getDataFromStorage(`${storagePrefix}list`)
 
-                console.log(list)
+               // console.log(list)
 
                 let index = e.data.index
                 if (options.animations.addItemAnimation) {

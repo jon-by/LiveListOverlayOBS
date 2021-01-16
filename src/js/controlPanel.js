@@ -358,7 +358,7 @@ window.onload = () => {
     }
     function addItemToList(item) {
 
-        console.log(item)
+        //console.log(item)
         let list = getDataFromStorage(`${storagePrefix}list`)
         let index = list.push(item) - 1
         saveInStorage(`${storagePrefix}list`, list)
@@ -515,7 +515,6 @@ window.onload = () => {
         ComfyJS.onCommand = (user, command, message, flags, extra) => {
             handleTwitchCommand(user, command, message, flags, extra)
         }
-
     }
 
     function handleTwitchCommand(user, command, message, flags, extra) {        
@@ -550,7 +549,7 @@ window.onload = () => {
 
     function handleTwitchChat(user, message, flags, self, extra) {
         let options = getDataFromStorage(`${storagePrefix}overlayOptions`)
-        console.log(flags)
+        //console.log(flags)
         lastRewardId().value = extra.customRewardId
         let toAdd = {
             "firstField": user,
@@ -589,7 +588,14 @@ window.onload = () => {
         })
     })
 
-    //localStorage.clear()    
+    function twitchAutoConnections(){
+        let channel = twitchChannel().value.replaceAll(' ', '')
+        if( channel != '' ){
+            twitchConnection(channel)
+        }
+    }
+
     updatePanelInterface()
     loadColorPicker()
+    twitchAutoConnections()
 }
