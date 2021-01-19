@@ -140,7 +140,7 @@ window.onload = () => {
 
     function updatePanelInterface() {
         let options = getDataFromStorage(`${storagePrefix}overlayOptions`)
-        console.log(options)
+        //console.log(options)
         // add item page
         addItemFieldName_1.textContent = options.listHeader.listHeaderName1
         addItemFieldName_2.textContent = options.listHeader.listHeaderName2
@@ -571,7 +571,7 @@ window.onload = () => {
     })
 
     function twitchAutoConnections() {
-        let channel = twitchChannel().value.replaceAll(' ', '')
+        let channel = twitchChannel().value.replace(' ', '')
         if (channel != '') {
             twitchConnection(channel)
         }
@@ -583,11 +583,10 @@ window.onload = () => {
             "higlightSubs": false,
             "higlightVips": false,
             "higlightBits": false
-        }]
-        //console.log(musicListSample)
+        }]        
         if (!getDataFromStorage(`${storagePrefix}list`)) {
-           let teste = saveInStorage(`${storagePrefix}list`, musicListSample)
-           // console.log(teste)
+            saveInStorage(`${storagePrefix}list`, musicListSample)
+           
         }
 
         if (!getDataFromStorage(`${storagePrefix}overlayOptions`)) {
