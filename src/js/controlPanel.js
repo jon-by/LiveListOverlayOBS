@@ -140,7 +140,7 @@ window.onload = () => {
 
     function updatePanelInterface() {
         let options = getDataFromStorage(`${storagePrefix}overlayOptions`)
-        //console.log(options)
+        console.log(options)
         // add item page
         addItemFieldName_1.textContent = options.listHeader.listHeaderName1
         addItemFieldName_2.textContent = options.listHeader.listHeaderName2
@@ -444,45 +444,26 @@ window.onload = () => {
             })
         })
     }
-    // local storage check
-    if (!getDataFromStorage(`${storagePrefix}list`)) {
-        let list = [{
-            "firstField": "Jon Doe",
-            "secondField": "Have a nice day",
-            "higlightSubs": false,
-            "higlightVips": false,
-            "higlightBits": false
-        }]
-        saveInStorage(`${storagePrefix}list`, list)
-    }
 
-    if (!getDataFromStorage(`${storagePrefix}overlayOptions`)) {
-        saveInStorage(`${storagePrefix}overlayOptions`, overlayOptions)
-    }
-    //Storage
-    function saveInStorage(name, data) {
+
+    
+
+    
+    function saveInStorage(key, data) {
         try {
-            localStorage.setItem(name, JSON.stringify(data))
-
-            if (localStorage.getItem(name)) {
-                return true
-            } else {
-                return false
-            }
+            localStorage.setItem(key, JSON.stringify(data))
+            return JSON.parse(localStorage.getItem(key)) 
         } catch (error) {
             console.log(error)
+            return false
         }
     }
-    function getDataFromStorage(name) {
-        try {
-            if (localStorage.getItem(name)) {
-                let data = JSON.parse(localStorage.getItem(name))
-                return data
-            } else {
-                return false
-            }
+    function getDataFromStorage(key) {
+        try {            
+            return JSON.parse(localStorage.getItem(key))           
         } catch (error) {
-            console.log(error)
+            //console.error(JSON.parse(error))
+            return false
         }
     }
 
@@ -495,10 +476,10 @@ window.onload = () => {
                     ComfyJS.Init(channel);
                 }
             })
-            .catch( () => {
+            .catch(() => {
                 btnSync.innerText = 'Connect'
                 btnSync.classList.add('btn-danger')
-                
+
             })
 
         ComfyJS.onConnected = () => {
@@ -517,9 +498,9 @@ window.onload = () => {
         }
     }
 
-    function handleTwitchCommand(user, command, message, flags, extra) {        
+    function handleTwitchCommand(user, command, message, flags, extra) {
         let options = getDataFromStorage(`${storagePrefix}overlayOptions`)
-        
+
         if (command === options.automation.addItemCommand && (flags.broadcaster || flags.mod)) {
             let msg = message.trim().split(' ')
             let secondParam = ''
@@ -531,14 +512,14 @@ window.onload = () => {
             })
 
             let toAdd = {
-                "firstField": user,
+                "firstField": msg[0],
                 "secondField": secondParam.trim(),
                 "higlightSubs": false,
                 "higlightVips": false,
                 "higlightBits": false
             }
 
-            addItemToList( toAdd )
+            addItemToList(toAdd)
         }
 
         if (command === options.automation.removeItemCommand && (flags.broadcaster || flags.mod)) {
@@ -558,7 +539,7 @@ window.onload = () => {
             "higlightVips": flags.vip,
             "higlightBits": false
         }
-        if ( flags.customReward && (
+        if (flags.customReward && (
             extra.customRewardId === options.automation.rewardId1 ||
             extra.customRewardId === options.automation.rewardId2 ||
             extra.customRewardId === options.automation.rewardId3
@@ -582,20 +563,42 @@ window.onload = () => {
     restoreBtn.addEventListener('click', event => {
         event.preventDefault()
         localStorage.clear()
+        setInitialValues()
         updatePanelInterface()
         tabComunication.postMessage({
             "type": "updateoverlay"
         })
     })
 
-    function twitchAutoConnections(){
+    function twitchAutoConnections() {
         let channel = twitchChannel().value.replaceAll(' ', '')
-        if( channel != '' ){
+        if (channel != '') {
             twitchConnection(channel)
         }
     }
+    function setInitialValues(){
+        let musicListSample = [{
+            "firstField": "github.com/jon-by",
+            "secondField": "Check for updates",
+            "higlightSubs": false,
+            "higlightVips": false,
+            "higlightBits": false
+        }]
+        //console.log(musicListSample)
+        if (!getDataFromStorage(`${storagePrefix}list`)) {
+           let teste = saveInStorage(`${storagePrefix}list`, musicListSample)
+           // console.log(teste)
+        }
 
+        if (!getDataFromStorage(`${storagePrefix}overlayOptions`)) {
+            saveInStorage(`${storagePrefix}overlayOptions`, overlayOptions)
+        }
+
+    }
+    setInitialValues()    
     updatePanelInterface()
     loadColorPicker()
-    twitchAutoConnections()
+    twitchAutoConnections()    
 }
+
+
