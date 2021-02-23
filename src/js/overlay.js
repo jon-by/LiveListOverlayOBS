@@ -69,21 +69,35 @@ window.onload = () => {
     var tableContainer = document.querySelector('#table-container')
     var tableHeader = document.querySelector('thead')
     var listIndex = () => document.querySelectorAll('.list-header-index')
-    var higlights = () => document.querySelectorAll('.higlight')
-    var listItens = () => document.querySelectorAll('.list-item')
+    var highlights = () => document.querySelectorAll('.higlight')
+    var listItems = () => document.querySelectorAll('.list-item')
 
     function drawOverlayList() {
+
+
         let options = getDataFromStorage(`${storagePrefix}overlayOptions`)
         let list = getDataFromStorage(`${storagePrefix}list`)
         let tableBodyHTML = ``
-
+        //console.log(list)
         listTitle.textContent = options.listTitle.titleText
         listFirstField.textContent = options.listHeader.listHeaderName1
         listSecondField.textContent = options.listHeader.listHeaderName2
 
         list.forEach((listItem, index) => {
+           // console.log(listItem.higlightSubs)
+            let subBitVip = ''
+            if (listItem.higlightSubs) {
+                subBitVip = 'sub'
+            } else if (listItem.higlightBits) {
+                subBitVip = 'bits'
+            } else if (listItem.higlightVips) {
+                subBitVip = 'vip'
+            }
+
+            //console.log(subBitVip)
+
             tableBodyHTML += `
-                <tr class="list-item ${listItem.higlight ? 'higlight' : ''}${index == 0 ? ' fist-item' : ''}">
+                <tr class="list-item${index === 0 ? ' fist-item ' : ''} ${subBitVip != '' ? subBitVip + ' higlight' : ''} ">
                     <th class="list-header-index" scope="row">${parseInt(index) + 1}</th>                     
                     <td>${listItem.firstField}</td>
                     <td>${listItem.secondField}</td>                    
@@ -94,6 +108,7 @@ window.onload = () => {
         tableBody.innerHTML = tableBodyHTML
 
         applyStyle()
+
     }
 
     function applyStyle() {
@@ -118,7 +133,7 @@ window.onload = () => {
         mainContainer.style.justifyContent = options.list.listColumnPosition
         mainContainer.style.alignItems = options.list.listLinePosition
 
-        listItens().forEach(element => {
+        listItems().forEach(element => {
             element.style.color = options.listItems.itemsDefaultColor
         })
 
@@ -128,7 +143,7 @@ window.onload = () => {
 
         tableBody.style.fontSize = `${options.listItems.itemsFontSize}pt`
 
-        higlights().forEach(element => {
+        highlights().forEach(element => {
             element.style.fontSize = `${options.higlight.higlightFontSize}pt`
             element.style.color = options.higlight.higlightFontColor
             element.style.backgroundColor = options.higlight.higlightBgColor
@@ -146,124 +161,119 @@ window.onload = () => {
         tableHeader.style.color = options.listHeader.listHeaderFontColor
         tableHeader.style.backgroundColor = options.listHeader.listHeaderBgColor
     }
-
-    function saveInStorage(name, data) {
-        try {
-            localStorage.setItem(name, JSON.stringify(data))
-
-            if (localStorage.getItem(name)) {
-                return true
-            } else {
-                return false
-            }
-        } catch (error) {
-            console.log(error)
-        }
-    }
-    function getDataFromStorage(name) {
-        try {
-            if (localStorage.getItem(name)) {
-                let data = JSON.parse(localStorage.getItem(name))
-                return data
-            } else {
-                return false
-            }
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    if (!getDataFromStorage(`${storagePrefix}list`)) {
-        let list = [{ "firstField": "Jon Doe", "secondField": "Have a nice day", "higlight": false }]
-        saveInStorage(`${storagePrefix}list`, list)
-    }
-
-    if (!getDataFromStorage(`${storagePrefix}overlayOptions`)) {
-        saveInStorage(`${storagePrefix}overlayOptions`, overlayOptions)
-    }
-
+    
     tabComunication.onmessage = function (e) {
         let options = getDataFromStorage(`${storagePrefix}overlayOptions`)
-
         let type = e.data.type
-
 
         if (type == 'deleteItem') {
 
             if (options.animations.removeItemAnimation) {
                 let index = e.data.index
-                listItens()[index].classList.add('to-remove')
+                listItems()[index].classList.add('to-remove')
                 setTimeout(() => drawOverlayList(), 1000)
             } else {
-                drawOverlayList()
+                setTimeout(() => drawOverlayList(), 50)
             }
-
         }
 
         if (type == 'changePosition') {
-            if(options.animations.changePositionAnimation){
+            if (options.animations.changePositionAnimation) {
                 animateChangePosition(e.data)
-            }else{
-                drawOverlayList()
+            } else {
+                setTimeout(() => drawOverlayList(), 300)
             }
-
-
-            
         }
         if (type == 'addedItem') {
-            drawOverlayList()
+            setTimeout(() => {
 
-            if (options.animations.addItemAnimation) {
-                let index = parseInt(e.data.index) - 1
-                let itens = listItens()
+                drawOverlayList()
 
-                itens[index].classList.add('just-added')
+                let list = getDataFromStorage(`${storagePrefix}list`)
 
-                setTimeout(() => {
-                    itens[index].classList.remove('just-added')
-                }, 3000);
-            }
+               // console.log(list)
+
+                let index = e.data.index
+                if (options.animations.addItemAnimation) {
+
+                    let items = listItems()
+
+                    items[index].classList.add('just-added')
+
+                    setTimeout(() => {
+                        items[index].classList.remove('just-added')
+                    }, 3000);
+                }
+            }, 50)
         }
-
         if (type == 'updateoverlay') {
-            drawOverlayList()
+            setTimeout(() => drawOverlayList(), 50)
         }
-
     }
 
     function animateChangePosition(type) {
         let { action, index } = type
         index = parseInt(index)
-        let itens = listItens()
+        let itens = listItems()
 
         if (action == 'up') {
-            if (typeof (itens[index - 1]) !== 'undefined') {
-                //console.log('deu')
+            if (typeof (itens[index - 1]) !== 'undefined') {                
                 itens[index].classList.add('go-up')
                 itens[index - 1].classList.add('go-down')
-
-
             }
         }
-
         if (action == 'down') {
-            if (typeof (itens[index + 1]) !== 'undefined') {
-                //console.log('deu')
+            if (typeof (itens[index + 1]) !== 'undefined') {                
                 itens[index].classList.add('go-down')
                 itens[index + 1].classList.add('go-up')
-
-
             }
         }
         setTimeout(() => {
             drawOverlayList()
-            listItens().forEach(item => {
+            listItems().forEach(item => {
                 item.classList.remove('go-down')
                 item.classList.remove('go-up')
             })
         }, 600)
     }
 
+
+    function saveInStorage(key, data) {
+        try {
+            localStorage.setItem(key, JSON.stringify(data))
+            return JSON.parse(localStorage.getItem(key)) 
+        } catch (error) {
+            console.log(error)
+            return false
+        }
+    }
+    function getDataFromStorage(key) {
+        try {            
+            return JSON.parse(localStorage.getItem(key))           
+        } catch (error) {
+            //console.error(JSON.parse(error))
+            return false
+        }
+    }
+    (()=>{
+        let musicListSample = [{
+            "firstField": "github.com/jon-by",
+            "secondField": "Check for updates",
+            "higlightSubs": false,
+            "higlightVips": false,
+            "higlightBits": false
+        }]
+        //console.log(musicListSample)
+        if (!getDataFromStorage(`${storagePrefix}list`)) {
+           let teste = saveInStorage(`${storagePrefix}list`, musicListSample)
+           // console.log(teste)
+        }
+
+        if (!getDataFromStorage(`${storagePrefix}overlayOptions`)) {
+            saveInStorage(`${storagePrefix}overlayOptions`, overlayOptions)
+        }
+
+    })();
     drawOverlayList()
     //localStorage.clear()
 }

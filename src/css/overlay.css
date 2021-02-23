@@ -39,20 +39,37 @@
 .higlight{
     z-index: 100 !important;
 }
-/* .higlight::after{
+.sub::after{
     content: 'SUB';
     color: black;
     position: absolute;
     font-size: 11pt;
-    transform: rotate(-20deg);
+    /* transform: rotate(-20deg); */
     margin-left: -35px;
-    /* margin-top: 0px; */
-    /* background-color: #0cd309c9; *//*
-    border-radius: 50%;
-    padding: 5px;
-    /* box-shadow: 3px 3px 7px rgba(0, 0, 0, .5); */
+    margin-top: 0px;
     
-/*} */
+}
+
+.bits::after{
+    content: 'BITS';
+    color: black;
+    position: absolute;
+    font-size: 11pt;
+    /*transform: rotate(-20deg);*/
+    margin-left: -35px;
+    margin-top: 0px;    
+}
+
+.vip::after{
+    content: 'VIP';
+    color: black;
+    position: absolute;
+    font-size: 11pt;
+    /* transform: rotate(-20deg); */
+    margin-left: -35px;
+    margin-top: 0px;
+    
+}
   
 
 .just-added {    

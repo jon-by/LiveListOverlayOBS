@@ -42,10 +42,25 @@
                     <label for="add-item-field-2" id="second-field-name" class="form-label">field-2</label>
                     <input type="text" class="form-control" id="add-item-field-2">
                 </div>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="higlight-switch">
-                    <label class="form-check-label" for="higlight-switch">Higlight</label>
+
+                <div class="flags-control">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="higlight-sub">
+                        <label class="form-check-label" for="higlight-sub">SUB</label>
+                    </div>
+
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="higlight-bit">
+                        <label class="form-check-label" for="higlight-bit">BITS</label>
+                    </div>
+                    
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="higlight-vip">
+                        <label class="form-check-label" for="higlight-vip">VIP</label>
+                    </div>
+                    
                 </div>
+
                 <div class="add-item-subit-container">
                     <button type="submit" id="show-options-add-item" class="btn btn-sm btn-secondary">Add <i
                             class="fas fa-file-import"></i></button>
@@ -334,53 +349,57 @@
             <h1>Twitch Sync</h1>
             <form>
                 <div class="input-group-sm mb-3">
-                    <label for="automation-twitch-channel"  class="form-label">Twitch
+                    <label for="automation-twitch-channel" class="form-label">Twitch
                         Channel</label>
                     <input type="text" class="check-change form-control input-group-sm" id="automation-twitch-channel"
                         placeholder="Your Channel Name">
                     </br>
-                        <button class="btn btn-danger" id="twitch-channel-connect">Connect</button>
+                    <button class="btn btn-danger" id="twitch-channel-connect">Connect</button>
                 </div>
-            </br>
+                </br>
                 <div class="separation">
                     <span class="alert">You can setup up to three id's to add items to the list</span>
                     <div class="input-group-sm mb-3">
-                        <label for="automation-add-item-id-1"  class="form-label">Add Item Reward
+                        <label for="automation-add-item-id-1" class="form-label">Add Item Reward
                             ID 1</label>
-                        <input type="text" class="check-change form-control input-group-sm" id="automation-add-item-id-1" placeholder="eg: m5378l15-a6ef-4f4c-9b23-ac9d3447700c">
+                        <input type="text" class="check-change form-control input-group-sm"
+                            id="automation-add-item-id-1" placeholder="eg: m5378l15-a6ef-4f4c-9b23-ac9d3447700c">
                     </div>
                     <div class="input-group-sm mb-3">
-                        <label for="automation-add-item-id-2"  class="form-label">Add Item Reward
+                        <label for="automation-add-item-id-2" class="form-label">Add Item Reward
                             ID 2</label>
-                        <input type="text" class="check-change form-control input-group-sm" id="automation-add-item-id-2" placeholder="eg: m5378l15-a6ef-4f4c-9b23-ac9d3447700c">
+                        <input type="text" class="check-change form-control input-group-sm"
+                            id="automation-add-item-id-2" placeholder="eg: m5378l15-a6ef-4f4c-9b23-ac9d3447700c">
                     </div>
                     <div class="input-group-sm mb-3">
-                        <label for="automation-add-item-id-3"  class="form-label">Add Item Reward
+                        <label for="automation-add-item-id-3" class="form-label">Add Item Reward
                             ID 3</label>
-                        <input type="text" class="check-change form-control input-group-sm" id="automation-add-item-id-3" placeholder="eg: m5378l15-a6ef-4f4c-9b23-ac9d3447700c">
+                        <input type="text" class="check-change form-control input-group-sm"
+                            id="automation-add-item-id-3" placeholder="eg: m5378l15-a6ef-4f4c-9b23-ac9d3447700c">
                     </div>
-                    <span>Check <a href="https://github.com/jon-by/LiveListOverlayOBS"> github</a> to see how to get your reward id</span>
+                    <span>Check <a href="https://github.com/jon-by/LiveListOverlayOBS"> github</a> to see how to get
+                        your reward id</span>
                 </div>
-                <br/>
+                <br />
 
                 <div class="input-group-sm mb-3">
-                    <label for="automation-add-item-command"  class="form-label">Add Item
+                    <label for="automation-add-item-command" class="form-label">Add Item
                         Command</label>
                     <input type="text" class="check-change form-control input-group-sm" id="automation-add-item-command"
                         value="listadd">
                     <small>Eg: !listadd @follower play my song</small>
                 </div>
                 <div class="input-group-sm mb-3">
-                    <label for="automation-remove-item-command"  class="form-label">Remove Item
+                    <label for="automation-remove-item-command" class="form-label">Remove Item
                         Command</label>
-                    <input type="text" class="check-change form-control input-group-sm" id="automation-remove-item-command"
-                        value="listremove">
+                    <input type="text" class="check-change form-control input-group-sm"
+                        id="automation-remove-item-command" value="listremove">
                     <small>Withoud "!"</small>
                 </div>
 
                 <div class="last-reard-id-from-chat">
                     <div class="input-group-sm mb-3">
-                        <label for="last-reward-id"  class="form-label">Last required reward id</label>
+                        <label for="last-reward-id" class="form-label">Last required reward id</label>
                         <input type="text" class="check-change form-control input-group-sm" id="last-reward-id">
                         <small>"Require Viewer to Enter Text" must be activated</small>
                     </div>
@@ -390,7 +409,7 @@
 
             </form>
 
-            
+
         </section>
 
     </div>
