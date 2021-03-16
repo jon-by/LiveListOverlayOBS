@@ -261,7 +261,8 @@ window.onload = () => {
             "secondField": "Check for updates",
             "higlightSubs": false,
             "higlightVips": false,
-            "higlightBits": false
+            "higlightBits": false,
+            id:null
         }]
         //console.log(musicListSample)
         if (!getDataFromStorage(`${storagePrefix}list`)) {
