@@ -161,5 +161,5 @@ span.alert{
 .editable:focus{
    border: none;
    outline: none;
-   border-bottom: 1px solid rgb(255, 252, 252);
+   border-bottom: 1px solid rgb(179, 155, 155);
 }
