@@ -14,7 +14,7 @@ Criamos o LiveListOverlayOBS com o objetivo de exibir em live a fila de pedidos 
 `https://www.twitch.tv/beatrizxavierjd`
 >Visita nóis sô! :alien:
 
->Você pode sugerir alterações ou dar ideias para melhorar nossa ferramenta, para isso, basta abrir uma issue em algum botão aí em cima, procura aí, sei que você vai achar. :pencil2:
+>Sugira alterações ou dê ideias para melhorar nossa ferramenta, para isso, basta abrir uma issue em algum botão aí em cima, procura aí, sei que você vai achar. :pencil2:
 
 <br>
 
@@ -22,6 +22,9 @@ Criamos o LiveListOverlayOBS com o objetivo de exibir em live a fila de pedidos 
 
 
 #### Instalação
+
+> Nunca faça a sincronização com a twitch se você já estiver ao vivo. Configure tudo antes de iniciar sua live. Caso os pedidos vindos da twich estajam se duplicando, desinstale o painel de controle e instale-o novamente. 
+
 
 
 >A instalação da lista é muito fácil e rápida, você pode fazer o download dos arquivos encontrados nesse repositório ou usar os links que vou fornecer aqui, o resultado será o mesmo, mas por ser mais pratico, vamos usar os links do repositório.
