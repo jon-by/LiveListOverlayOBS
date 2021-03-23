@@ -147,3 +147,19 @@ span.alert{
     width: 100%;
     margin: 10px 0;
 }
+
+.editable{
+    border: none;
+    width: 100%;
+    background: transparent;
+    border-bottom: 1px solid black;
+    
+}
+.list-controls, .control-delete{
+    cursor: pointer;
+}
+.editable:focus{
+   border: none;
+   outline: none;
+   border-bottom: 1px solid rgb(179, 155, 155);
+}
