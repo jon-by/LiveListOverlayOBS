@@ -53,6 +53,8 @@ window.onload = () => {
       rewardId1: "",
       rewardId2: "",
       rewardId3: "",
+      rewardId4: "",
+      rewardId5: "",
       addItemCommand: "listadd",
       removeItemCommand: "listremove",
     },
@@ -166,6 +168,8 @@ window.onload = () => {
   var rewardId1 = () => document.querySelector("#automation-add-item-id-1");
   var rewardId2 = () => document.querySelector("#automation-add-item-id-2");
   var rewardId3 = () => document.querySelector("#automation-add-item-id-3");
+  var rewardId4 = () => document.querySelector("#automation-add-item-id-4");
+  var rewardId5 = () => document.querySelector("#automation-add-item-id-5");
   var addItemCommand = () =>
     document.querySelector("#automation-add-item-command");
   var removeItemCommand = () =>
@@ -230,6 +234,8 @@ window.onload = () => {
     rewardId1().value = options.automation.rewardId1;
     rewardId2().value = options.automation.rewardId2;
     rewardId3().value = options.automation.rewardId3;
+    rewardId4().value = options.automation.rewardId4;
+    rewardId5().value = options.automation.rewardId5;
     addItemCommand().value = options.automation.addItemCommand;
     removeItemCommand().value = options.automation.removeItemCommand;
 
@@ -287,6 +293,8 @@ window.onload = () => {
     options.automation.rewardId1 = rewardId1().value;
     options.automation.rewardId2 = rewardId2().value;
     options.automation.rewardId3 = rewardId3().value;
+    options.automation.rewardId4 = rewardId4().value;
+    options.automation.rewardId5 = rewardId5().value;
     options.automation.addItemCommand = addItemCommand().value;
     options.automation.removeItemCommand = removeItemCommand().value;
 
@@ -615,10 +623,13 @@ window.onload = () => {
       higlightBits: false,
     };
     if (
-      flags.customReward &&
-      (extra.customRewardId === options.automation.rewardId1 ||
+      flags.customReward && (
+        extra.customRewardId === options.automation.rewardId1 ||
         extra.customRewardId === options.automation.rewardId2 ||
-        extra.customRewardId === options.automation.rewardId3)
+        extra.customRewardId === options.automation.rewardId3 ||
+        extra.customRewardId === options.automation.rewardId4 ||
+        extra.customRewardId === options.automation.rewardId5
+      )
     ) {
       addItemToList(toAdd);
     }
