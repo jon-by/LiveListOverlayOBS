@@ -623,8 +623,8 @@ window.onload = () => {
       higlightBits: false,
     };
     if (
-      flags.customReward &&
-      (extra.customRewardId === options.automation.rewardId1 ||
+      flags.customReward && (
+        extra.customRewardId === options.automation.rewardId1 ||
         extra.customRewardId === options.automation.rewardId2 ||
         extra.customRewardId === options.automation.rewardId3 ||
         extra.customRewardId === options.automation.rewardId4 ||
