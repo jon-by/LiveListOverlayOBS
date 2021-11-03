@@ -10,7 +10,7 @@ Criamos o LiveListOverlayOBS com o objetivo de exibir em live a fila de pedidos 
 
 ***
 
->Você pode me encontrar na live da <a href="https://www.twitch.tv/beatrizxavierjd">beatrizxvierjd</a> sempre que quiser trocar uma ideia. 
+
 `https://www.twitch.tv/beatrizxavierjd`
 >Visita nóis sô! :alien:
 
