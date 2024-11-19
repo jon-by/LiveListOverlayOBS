@@ -68,7 +68,7 @@ Dê um nome a sua browser source e clique em **OK**. Depois basta inserir a URL,
  * Nos próximos 3 campos você pode definir até 3 id's de reward que servirão para adicionar itens à lista, para isso, vá a té o painel de controle de custom reward da twitch e na recompensa que você deseja capturar o ID, marque a opção para exigir que o usuário insira um texto ao resgatar, feito isso, vá até o chat do seu canal e resgate a recompensa, volte até o painel de controle da lista e no final das configurações de sincronização você verá o ID da recompensa que acabou de resgatar, basta copiar e colar no campo de **Add Item Reward ID 1**. Faça o mesmo procedimento para os outros campos caso queira que mais de uma recompensa adicione items na lista.
 
 ***
-#### comandos para adicionar e remover itens à lista:
+#### comandos para adicionar e remover itens da lista:
 
 Nas configurações de sincronização, você tem comandos para adicionar e remover itens da lista.
 
